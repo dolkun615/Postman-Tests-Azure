@@ -1,19 +1,43 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "windows-latest"
+variables:
+  - group: test-configuration
+  - name: CustomerTransferClientCertFileName
+    value: CustomerTransferQA.pfx
+  - name: OnlineApiClientCertFileName
+    value: CarmaxOnlineArrWWWQA.pfx
+  - name: ClientCertListFileName
+    value: client-cert-list.json
+  - name: Web_Vehicle_Service_Api_Key
+    value: "$(web-vehicle-api-Key)"
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: PostmanCollectionTests
+  displayName: "Postman Tests"
+  jobs:
+  - job: RunTests
+    displayName: "Run Postman Tests"
+    steps:
+    - task: DownloadSecureFile@1
+      inputs:
+        secureFile: $(ClientCertListFileName)
+    - task: DownloadSecureFile@1
+      inputs:
+        secureFile: $(CustomerTransferClientCertFileName)
+    - task: DownloadSecureFile@1
+      inputs:
+        secureFile: $(OnlineApiClientCertFileName)
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - script: "npm install -g newman"
+      displayName: "Install Newman"
+
+    - script: "newman run InitiateTransfer.json --bail -e Environment.json --reporters cli,junit --reporter-junit-export Results/junitReport.xml --ssl-client-cert-list D://a//_temp//$(ClientCertListFilename) --env-var web-vehicle-api-key=$(Web_Vehicle_Service_Api_Key)"
+      displayName: "Run Postman Collection"
+
+    - task: publishTestResults@2
+      displayName: "Publish Test Results"
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: "**/*.xml"
+        searchFolder: "Results"
+        testRunTitle: "Newman Regression Tests"
