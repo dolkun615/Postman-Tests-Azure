@@ -1,0 +1,424 @@
+{
+	"id": "83b8eed7-e741-430e-b63e-4e0cac8cf001",
+	"name": "QA",
+	"values": [
+		{
+			"key": "ciamId",
+			"value": "f90e51dc-5a50-4679-a52f-23b3bf1ecfc6",
+			"enabled": true
+		},
+		{
+			"key": "crmId",
+			"value": "0014C00000T5BZoQAN",
+			"enabled": true
+		},
+		{
+			"key": "stockNumber",
+			"value": "50002234",
+			"enabled": true
+		},
+		{
+			"key": "destinationLocationId",
+			"value": "7662",
+			"enabled": true
+		},
+		{
+			"key": "api-version",
+			"value": "1",
+			"enabled": true
+		},
+		{
+			"key": "collection_tries",
+			"value": "5",
+			"enabled": true
+		},
+		{
+			"key": "defaultTimeout",
+			"value": "7000",
+			"enabled": true
+		},
+		{
+			"key": "buys-customer-service-url",
+			"value": "https://customer-service.buys-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "buys-test-automation-service-url",
+			"value": "https://testautomation-gateway.buys-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "customer-transfer-service-url",
+			"value": "https://customer-transfer-service-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "maxcare_api_url",
+			"value": "https://maxcare-service.buys-qa.carmax.com/index.html",
+			"enabled": true
+		},
+		{
+			"key": "online-api-url",
+			"value": "https://origin-arrqa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "progression-service-url",
+			"value": "https://customer-progression-service-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "reservation-service-url",
+			"value": "https://reservation-service-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "stock-number-service-url",
+			"value": "https://stocknumbergenerator.azurewebsites.net",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-Create-Url",
+			"value": "https://apis-mtls-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-order-service-url",
+			"value": "https://vehicleorder-service.buys-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "web-vehicle-service-url",
+			"value": "https://origin-webvehicle-service-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "appraisal-service-url",
+			"value": "https://appraisal-gateway-qa.services.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "buysCustomerId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "buys-customer-service-api-key",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "maxcare-apiKey",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "stock-number-generator-code",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-create-service-api-key",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-order-service-apikey",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "web-vehicle-api-key",
+			"value": "apikey",
+			"enabled": true
+		},
+		{
+			"key": "email",
+			"value": "Jimmy814@test.com",
+			"enabled": true
+		},
+		{
+			"key": "firstName",
+			"value": "Barrett",
+			"enabled": true
+		},
+		{
+			"key": "lastName",
+			"value": "Larson",
+			"enabled": true
+		},
+		{
+			"key": "phoneNumber",
+			"value": "502-525-5773",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "dndd1979",
+			"enabled": true
+		},
+		{
+			"key": "retypepassword",
+			"value": "dndd1979",
+			"enabled": true
+		},
+		{
+			"key": "reservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "reservationExpirationDate",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "orderId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "preference-key",
+			"value": "illum",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-preference-key",
+			"value": "ullamco",
+			"enabled": true
+		},
+		{
+			"key": "load-test-ciam-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "finalSummaryJson",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "randomUUID",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "retry_attempts",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "plansAsOfToday",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "transferRequestId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "vehicle-inventory-service-url",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "transferableStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "transferCheckoutId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "invalidStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "secondStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "newCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ciamIdForTransfer",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stockNumberForTransfer",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "transferReservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ciamIdForDelivery",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stockNumberForDelivery",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "deliveryReservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ciamIdForCurbside",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stockNumberForCurbside",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "curbsideReservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ciamIdForAppointment",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stockNumberForAppointment",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "appointmentReservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stagingslot-west",
+			"value": "https://customer-transfer-qa-west-service-service-staging.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "stagingslot-east",
+			"value": "https://customer-transfer-qa-east-service-service-staging.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "secondCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "secondTransferableStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "secondTransferCheckoutId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "secondReservationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "thirdCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "thirdTransferableStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "customerInformation",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "customerInfos",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "quoteId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "offerCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "classic-order-adapter-url",
+			"value": "https://classicorderadapter-service.buys-qa.carmax.com",
+			"enabled": true
+		},
+		{
+			"key": "secondTransferableVehicle",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "fourthCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "fourthTransferableStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "fifthCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "fifthTransferableStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "invalidTransferCheckoutId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "failedTestCiamId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "vehicleForFailingTest",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "stockNo",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-08-05T12:15:12.934Z",
+	"_postman_exported_using": "Postman/8.9.1"
+}

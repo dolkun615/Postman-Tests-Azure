@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "46d35820-7eb8-4cf0-8922-5b0c864492ac",
+		"name": "Demo Collection Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ensure a Customer is is created\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    let ciamId = pm.response.json();\r",
+							"    pm.expect(ciamId).to.exist;\r",
+							"    console.log(ciamId);\r",
+							"    pm.environment.set(\"ciamId\", ciamId);\r",
+							"    setTimeout(() => {}, 5000);\r",
+							"} )"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let randomFirstName = pm.variables.replaceIn('{{$randomFirstName}}');\r",
+							"pm.environment.set(\"firstName\", randomFirstName);\r",
+							"console.log(randomFirstName);\r",
+							"\r",
+							"let randomLastName = pm.variables.replaceIn('{{$randomLastName}}');\r",
+							"pm.environment.set(\"lastName\", randomLastName);\r",
+							"console.log(randomLastName);\r",
+							"\r",
+							"let randomEmail = pm.variables.replaceIn('{{$randomFirstName}}' + '{{$randomInt}}' + '@mytest.com');\r",
+							"pm.environment.set(\"email\", randomEmail);\r",
+							"console.log(randomEmail);\r",
+							"\r",
+							"let password = pm.variables.replaceIn('dndd1979');\r",
+							"pm.environment.set(\"password\", password);\r",
+							"console.log(password);\r",
+							"\r",
+							"let randomPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+							"let randomPhone = new RegExp(\"-\", \"g\");\r",
+							"randomPhoneNumber = randomPhoneNumber.replace(randomPhone, \"\");\r",
+							"pm.environment.set(\"phoneNumber\", randomPhoneNumber);\r",
+							"console.log(randomPhoneNumber);\r",
+							"\r",
+							"let retypepassword = password;\r",
+							"pm.environment.set(\"retypepassword\", retypepassword);\r",
+							"console.log(retypepassword);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\": \"{{lastName}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"zipCode\": \"23111\",\r\n    \"canSendAlertEmail\": \"false\",\r\n    \"canSendAlertPushNotification\": \"false\",\r\n    \"suppressWelcomeEmail\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{online-api-url}}/v1/api/accounts/register",
+					"host": [
+						"{{online-api-url}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"accounts",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Testable Vehicle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ensure Testable Vehicle is Created\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    let response = pm.response.json();\r",
+							"    pm.expect(response.stockNumber).to.exist;\r",
+							"    pm.expect(response.vehicleComplete).to.be.true;\r",
+							"    pm.expect(response.transferFeesComplete).to.be.true;\r",
+							"    let stockNo = response.stockNumber;\r",
+							"    console.log(stockNo);\r",
+							"    pm.environment.set(\"stockNo\", stockNo);\r",
+							"    setTimeout(() => {}, 5000);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{web-vehicle-api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"year\": 2017,\r\n  \"price\": 998,\r\n  \"make\": \"Ford\",\r\n  \"model\": \"F150\",\r\n  \"trim\": \"XLT\",\r\n  \"isTransferable\": true,\r\n  \r\n   \"Vin\" : \"5GAKVCKD1EJ314299\",\r\n   \"Body\" : \"4D Sedan\",\r\n   \"InteriorColor\" : \"Gray\",\r\n   \"ExteriorColor\" : \"Red\",\r\n   \"Mileage\" : 10000,\r\n   \"Status\" : \"USED SALELABLE\",\r\n   \"StoreId\" : \"7106\",\r\n   \"CurbWeight\" : \"3501\",\r\n   \"GrossWeight\" : \"4001\",\r\n   \"EngineType\" : \"5.0L V8\",\r\n   \"FuelType\" : \"Gas\",\r\n   \"SkuId\" : \"50137553\",\r\n   \"wait\" : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{web-vehicle-service-url}}/vehicles/testvehicle",
+					"host": [
+						"{{web-vehicle-service-url}}"
+					],
+					"path": [
+						"vehicles",
+						"testvehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initiate a Successful Transfer With Customer Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ensure Transfer is Initiated Successfully\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(201);\r",
+							"    let transferCheckoutId =  pm.response.json().transferCheckoutId;\r",
+							"    pm.expect(transferCheckoutId).to.exist;\r",
+							"    console.log(transferCheckoutId);\r",
+							"    pm.environment.set(\"transferCheckoutId\", transferCheckoutId);\r",
+							"    setTimeout(() => {}, 10000);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"{{ciamId}}\",\n            \"type\": \"ciamid\"\n        }\n    ],\n    \"stockNumber\": \"{{stockNo}}\",\n    \"destinationLocationId\": \"7662\",\n    \"customerInformation\": {\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phoneNumber\": \"{{phoneNumber}}\",\n        \"email\": \"{{email}}\"\n    },\n    \"leadData\": {\n        \"phoneNumber\": \"{{phoneNumber}}\",\n        \"adCode\": \"magna enim\",\n        \"adCodeDate\": \"1991-02-19T17:19:38.784Z\",\n        \"origin\": \"carmax.com-mobile\",\n        \"originPage\": \"Carpage_Transfer\",\n        \"sessionId\": \"officia minim id\",\n        \"visitorId\": \"Ut incididunt\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{customer-transfer-service-url}}/api/transfer-checkouts",
+					"host": [
+						"{{customer-transfer-service-url}}"
+					],
+					"path": [
+						"api",
+						"transfer-checkouts"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "non irure minim",
+							"disabled": true
+						}
+					]
+				},
+				"description": "The identitiesModel must include at least one CIAM or CRM id."
+			},
+			"response": [
+				{
+					"name": "The transfer request id",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"anim labore incididunt et\",\n            \"type\": \"sed lab\"\n        },\n        {\n            \"value\": \"nostrud cillum dolore\",\n            \"type\": \"voluptate sed\"\n        }\n    ],\n    \"stockNumber\": \"aute cillum do Ut\",\n    \"destinationLocationId\": \"vol\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transfer-checkouts?api-version=non irure minim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transfer-checkouts"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "non irure minim"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "\"non irure minim\""
+				},
+				{
+					"name": "An error occurred creating the request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"anim labore incididunt et\",\n            \"type\": \"sed lab\"\n        },\n        {\n            \"value\": \"nostrud cillum dolore\",\n            \"type\": \"voluptate sed\"\n        }\n    ],\n    \"stockNumber\": \"aute cillum do Ut\",\n    \"destinationLocationId\": \"vol\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transfer-checkouts?api-version=non irure minim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transfer-checkouts"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "non irure minim"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Ensure Transfer Data Retrieved",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ensure Transfer Data received\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    let response = pm.response.json();\r",
+							"    pm.expect(response.transferCheckoutId).to.equal(pm.environment.get(\"transferCheckoutId\"));\r",
+							"    pm.expect(response.customerInformation.firstName).to.equal(pm.environment.get(\"firstName\"));\r",
+							"    pm.expect(response.customerInformation.lastName).to.equal(pm.environment.get(\"lastName\"));\r",
+							"    pm.expect(response.identities[0].value).to.equal(pm.environment.get(\"ciamId\"));\r",
+							"    pm.expect(response.stockNumber).to.equal(pm.environment.get(\"stockNo\").toString());\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{web-vehicle-api-key}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{customer-transfer-service-url}}/api/transfer-checkouts/:id",
+					"host": [
+						"{{customer-transfer-service-url}}"
+					],
+					"path": [
+						"api",
+						"transfer-checkouts",
+						":id"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "non irure minim",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{transferCheckoutId}}"
+						}
+					]
+				},
+				"description": "The response will include the transfer request id."
+			},
+			"response": [
+				{
+					"name": "The transfer request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transfer-checkouts",
+								":id"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "non irure minim"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"id\": \"veniam eiusmod\",\n \"identities\": [\n  {\n   \"value\": \"ad\",\n   \"type\": \"qui ex deserunt dolore\"\n  },\n  {\n   \"value\": \"ad magna non ut\",\n   \"type\": \"Excepteur aliqua\"\n  }\n ],\n \"stockNumber\": \"in cu\",\n \"destinationLocationId\": \"dolore magna mollit fugiat\"\n}"
+				},
+				{
+					"name": "No record was found for the provided id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transfer-checkouts",
+								":id"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "non irure minim"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"id\": \"veniam eiusmod\",\n \"identities\": [\n  {\n   \"value\": \"ad\",\n   \"type\": \"qui ex deserunt dolore\"\n  },\n  {\n   \"value\": \"ad magna non ut\",\n   \"type\": \"Excepteur aliqua\"\n  }\n ],\n \"stockNumber\": \"in cu\",\n \"destinationLocationId\": \"dolore magna mollit fugiat\"\n}"
+				},
+				{
+					"name": "An error occurred retrieving the request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transfer-checkouts",
+								":id"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "non irure minim"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
