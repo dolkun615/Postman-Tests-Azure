@@ -31,7 +31,7 @@ stages:
     - script: "npm install -g newman"
       displayName: "Install Newman"
 
-    - script: "newman run DemoCollection.json -e Environment.json --reporters cli,junit --reporter-junit-export Results/junitReport.xml --ssl-client-cert-list D://a//_temp//$(ClientCertListFilename) --env-var web-vehicle-api-key=$(Web_Vehicle_Service_Api_Key)"
+    - script: "newman run DemoCollection.json --bail -e Environment.json --reporters cli,junit --reporter-junit-export Results/junitReport.xml --ssl-client-cert-list D://a//_temp//$(ClientCertListFilename) --env-var web-vehicle-api-key=$(Web_Vehicle_Service_Api_Key)"
       displayName: "Run Postman Collection"
 
     - task: publishTestResults@2
