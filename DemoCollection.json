@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Completed Copy",
+			"name": "Completed",
 			"item": [
 				{
 					"name": "ESB - Created",
@@ -269,7 +269,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure TransferOrder Tendered\", () => {\r",
-									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"    pm.expect(pm.response.code).to.equal(2001);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.count).to.equal(1);\r",
 									"    let transferOrder = response.items[0];\r",
