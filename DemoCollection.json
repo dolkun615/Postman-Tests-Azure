@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "46d35820-7eb8-4cf0-8922-5b0c864492ac",
-		"name": "Demo Collection Copy",
+		"name": "Demo Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -311,7 +311,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Ensure Transfer Data received\", () => {\r",
-							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    pm.expect(pm.response.code).to.equal(201);\r",
 							"    let response = pm.response.json();\r",
 							"    pm.expect(response.transferCheckoutId).to.equal(pm.environment.get(\"transferCheckoutId\"));\r",
 							"    pm.expect(response.customerInformation.firstName).to.equal(pm.environment.get(\"firstName\"));\r",
