@@ -1,502 +1,398 @@
 {
 	"info": {
-		"_postman_id": "46d35820-7eb8-4cf0-8922-5b0c864492ac",
-		"name": "Demo Collection",
+		"_postman_id": "7245ce43-1f90-43f2-b2a1-bdf29c78e1e9",
+		"name": "DemoApi",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create a Customer",
-			"event": [
+			"name": "Completed Copy",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Ensure a Customer is is created\", () => {\r",
-							"    pm.expect(pm.response.code).to.equal(200);\r",
-							"    let ciamId = pm.response.json();\r",
-							"    pm.expect(ciamId).to.exist;\r",
-							"    console.log(ciamId);\r",
-							"    pm.environment.set(\"ciamId\", ciamId);\r",
-							"    setTimeout(() => {}, 5000);\r",
-							"} )"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"let randomFirstName = pm.variables.replaceIn('{{$randomFirstName}}');\r",
-							"pm.environment.set(\"firstName\", randomFirstName);\r",
-							"console.log(randomFirstName);\r",
-							"\r",
-							"let randomLastName = pm.variables.replaceIn('{{$randomLastName}}');\r",
-							"pm.environment.set(\"lastName\", randomLastName);\r",
-							"console.log(randomLastName);\r",
-							"\r",
-							"let randomEmail = pm.variables.replaceIn('{{$randomFirstName}}' + '{{$randomInt}}' + '@mytest.com');\r",
-							"pm.environment.set(\"email\", randomEmail);\r",
-							"console.log(randomEmail);\r",
-							"\r",
-							"let password = pm.variables.replaceIn('dndd1979');\r",
-							"pm.environment.set(\"password\", password);\r",
-							"console.log(password);\r",
-							"\r",
-							"let randomPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
-							"let randomPhone = new RegExp(\"-\", \"g\");\r",
-							"randomPhoneNumber = randomPhoneNumber.replace(randomPhone, \"\");\r",
-							"pm.environment.set(\"phoneNumber\", randomPhoneNumber);\r",
-							"console.log(randomPhoneNumber);\r",
-							"\r",
-							"let retypepassword = password;\r",
-							"pm.environment.set(\"retypepassword\", retypepassword);\r",
-							"console.log(retypepassword);\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"followRedirects": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\": \"{{lastName}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"zipCode\": \"23111\",\r\n    \"canSendAlertEmail\": \"false\",\r\n    \"canSendAlertPushNotification\": \"false\",\r\n    \"suppressWelcomeEmail\": \"true\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{online-api-url}}/v1/api/accounts/register",
-					"host": [
-						"{{online-api-url}}"
-					],
-					"path": [
-						"v1",
-						"api",
-						"accounts",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create a Testable Vehicle",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Ensure Testable Vehicle is Created\", () => {\r",
-							"    pm.expect(pm.response.code).to.equal(200);\r",
-							"    let response = pm.response.json();\r",
-							"    pm.expect(response.stockNumber).to.exist;\r",
-							"    pm.expect(response.vehicleComplete).to.be.true;\r",
-							"    pm.expect(response.transferFeesComplete).to.be.true;\r",
-							"    let stockNo = response.stockNumber;\r",
-							"    console.log(stockNo);\r",
-							"    pm.environment.set(\"stockNo\", stockNo);\r",
-							"    setTimeout(() => {}, 5000);\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "apikey",
-						"value": "{{web-vehicle-api-key}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"year\": 2017,\r\n  \"price\": 998,\r\n  \"make\": \"Ford\",\r\n  \"model\": \"F150\",\r\n  \"trim\": \"XLT\",\r\n  \"isTransferable\": true,\r\n  \r\n   \"Vin\" : \"5GAKVCKD1EJ314299\",\r\n   \"Body\" : \"4D Sedan\",\r\n   \"InteriorColor\" : \"Gray\",\r\n   \"ExteriorColor\" : \"Red\",\r\n   \"Mileage\" : 10000,\r\n   \"Status\" : \"USED SALELABLE\",\r\n   \"StoreId\" : \"7106\",\r\n   \"CurbWeight\" : \"3501\",\r\n   \"GrossWeight\" : \"4001\",\r\n   \"EngineType\" : \"5.0L V8\",\r\n   \"FuelType\" : \"Gas\",\r\n   \"SkuId\" : \"50137553\",\r\n   \"wait\" : true\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{web-vehicle-service-url}}/vehicles/testvehicle",
-					"host": [
-						"{{web-vehicle-service-url}}"
-					],
-					"path": [
-						"vehicles",
-						"testvehicle"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Initiate a Successful Transfer With Customer Info",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Ensure Transfer is Initiated Successfully\", () => {\r",
-							"    pm.expect(pm.response.code).to.equal(201);\r",
-							"    let transferCheckoutId =  pm.response.json().transferCheckoutId;\r",
-							"    pm.expect(transferCheckoutId).to.exist;\r",
-							"    console.log(transferCheckoutId);\r",
-							"    pm.environment.set(\"transferCheckoutId\", transferCheckoutId);\r",
-							"    setTimeout(() => {}, 10000);\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "apikey",
-					"apikey": [
+					"name": "ESB - Created",
+					"event": [
 						{
-							"key": "in",
-							"value": "header",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure ESB Created Event is Successful\", () => {\r",
+									"    utils.checkStatus(pm, 201);    \r",
+									"    console.log(responseBody);\r",
+									"    pm.expect(responseBody).to.exist;\r",
+									"    pm.environment.set(\"esbTransferOrderId\", responseBody);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
 						},
 						{
-							"key": "key",
-							"value": "",
-							"type": "string"
-						},
-						{
-							"key": "value",
-							"value": "",
-							"type": "string"
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let randomStockNumber = _.random(100, 10000);\r",
+									"console.log(`randomStockNumber: ${randomStockNumber}`);\r",
+									"pm.environment.set(\"randomStockNumber\", randomStockNumber);\r",
+									"\r",
+									"let vehicleLocationId = _.random(100, 1000);\r",
+									"console.log(`vehicleLocationId: ${vehicleLocationId}`);\r",
+									"pm.environment.set(\"vehicleLocationId\", vehicleLocationId);\r",
+									"\r",
+									"let randomPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+									"let randomPhone = new RegExp(\"-\", \"g\");\r",
+									"randomPhoneNumber = randomPhoneNumber.replace(randomPhone, \"\");\r",
+									"pm.environment.set(\"randomPhoneNumber\", randomPhoneNumber);\r",
+									"console.log(randomPhoneNumber);\r",
+									"\r",
+									"let destinationLocationId = _.random(100, 1000);\r",
+									"console.log(`destinationLocationId: ${destinationLocationId}`);\r",
+									"pm.environment.set(\"destinationLocationId\", destinationLocationId);\r",
+									"\r",
+									"let cmxdbTransferOrderNumber = _.random(100, 10000);\r",
+									"console.log(`cmxdbTransferOrderNumber: ${cmxdbTransferOrderNumber}`);\r",
+									"pm.environment.set(\"cmxdbTransferOrderNumber\", cmxdbTransferOrderNumber);"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"{{ciamId}}\",\n            \"type\": \"ciamid\"\n        }\n    ],\n    \"stockNumber\": \"{{stockNo}}\",\n    \"destinationLocationId\": \"7662\",\n    \"customerInformation\": {\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phoneNumber\": \"{{phoneNumber}}\",\n        \"email\": \"{{email}}\"\n    },\n    \"leadData\": {\n        \"phoneNumber\": \"{{phoneNumber}}\",\n        \"adCode\": \"magna enim\",\n        \"adCodeDate\": \"1991-02-19T17:19:38.784Z\",\n        \"origin\": \"carmax.com-mobile\",\n        \"originPage\": \"Carpage_Transfer\",\n        \"sessionId\": \"officia minim id\",\n        \"visitorId\": \"Ut incididunt\"\n    }\n}"
-				},
-				"url": {
-					"raw": "{{customer-transfer-service-url}}/api/transfer-checkouts",
-					"host": [
-						"{{customer-transfer-service-url}}"
 					],
-					"path": [
-						"api",
-						"transfer-checkouts"
-					],
-					"query": [
-						{
-							"key": "api-version",
-							"value": "non irure minim",
-							"disabled": true
-						}
-					]
-				},
-				"description": "The identitiesModel must include at least one CIAM or CRM id."
-			},
-			"response": [
-				{
-					"name": "The transfer request id",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"anim labore incididunt et\",\n            \"type\": \"sed lab\"\n        },\n        {\n            \"value\": \"nostrud cillum dolore\",\n            \"type\": \"voluptate sed\"\n        }\n    ],\n    \"stockNumber\": \"aute cillum do Ut\",\n    \"destinationLocationId\": \"vol\"\n}"
+							"raw": "{\r\n    \"TransactionID\": \"{{$guid}}\",\r\n    \"Result\": [\r\n        {\r\n            \"requesting_loc_num\": {{destinationLocationId}}, // DestinationLocationId\r\n            \"transfer_order_num\": {{cmxdbTransferOrderNumber}}, // CmxdbTransferOrderNumber\r\n            \"owning_loc_num\": {{vehicleLocationId}}, // SourceLocationId\r\n            \"stock_num_out\": {{randomStockNumber}}, // StockNumber\r\n            \"transfer_fee\": 150.00,\r\n            \"first_name\": \"{{$randomFirstName}}\",\r\n            \"last_name\": \"{{$randomLastName}}\",\r\n            \"email\": \"{{$randomEmail}}\",\r\n            \"phone_num\": \"{{randomPhoneNumber}}\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/transfer-checkouts?api-version=non irure minim",
+							"raw": "{{customer-transfer-service-url}}/esb-events/created",
 							"host": [
-								"{{baseUrl}}"
+								"{{customer-transfer-service-url}}"
 							],
 							"path": [
-								"api",
-								"transfer-checkouts"
-							],
-							"query": [
-								{
-									"key": "api-version",
-									"value": "non irure minim"
-								}
+								"esb-events",
+								"created"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"cookie": [],
-					"body": "\"non irure minim\""
+					"response": []
 				},
 				{
-					"name": "An error occurred creating the request",
-					"originalRequest": {
+					"name": "Get TransferOrder Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure Transfer Data is Retrieved With esbTransferOrderId\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.cmxdbTransferOrderNumber).to.exist;\r",
+									"    pm.expect(response.destinationLocationId.toString());\r",
+									"    pm.expect(response.transferStatus).to.equal(\"transfer-order-awaiting-approval\");\r",
+									"    pm.expect(response.isActive).to.equal(true);\r",
+									"    pm.expect(response.denialDetails).to.equal(null);\r",
+									"    pm.expect(response.logisticDetails).to.equal(null);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{customer-transfer-service-url}}/api/transfer-orders/{{esbTransferOrderId}}",
+							"host": [
+								"{{customer-transfer-service-url}}"
+							],
+							"path": [
+								"api",
+								"transfer-orders",
+								"{{esbTransferOrderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ESB - Approved",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure ESB Approved Event is Successful\", () => {\r",
+									"    utils.checkStatus(pm, 200);    \r",
+									"    // Add tests\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"identities\": [\n        {\n            \"value\": \"anim labore incididunt et\",\n            \"type\": \"sed lab\"\n        },\n        {\n            \"value\": \"nostrud cillum dolore\",\n            \"type\": \"voluptate sed\"\n        }\n    ],\n    \"stockNumber\": \"aute cillum do Ut\",\n    \"destinationLocationId\": \"vol\"\n}"
+							"raw": "{\r\n    \"TransactionID\": \"{{$guid}}\",\r\n    \"Result\": [\r\n        {\r\n            \"loc_num_out\": \"{{destinationLocationId}}\",\r\n            \"order_num_out\": \"{{cmxdbTransferOrderNumber}}\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/transfer-checkouts?api-version=non irure minim",
+							"raw": "{{customer-transfer-service-url}}/esb-events/approved",
 							"host": [
-								"{{baseUrl}}"
+								"{{customer-transfer-service-url}}"
+							],
+							"path": [
+								"esb-events",
+								"approved"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ensure TransferOrder Approved",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure TransferOrder Approved\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.count).to.equal(1);\r",
+									"    let transferOrder = response.items[0];\r",
+									"    pm.expect(transferOrder.transferOrderId).to.equal(pm.environment.get(\"esbTransferOrderId\"));\r",
+									"    pm.expect(transferOrder.transferStatus).to.equal(\"transfer-order-approved\");\r",
+									"    pm.expect(transferOrder.isActive).to.equal(true);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{customer-transfer-service-url}}/api/transfer-orders?destinationStoreId={{destinationLocationId}}&cmxdbTransferOrderNumber={{cmxdbTransferOrderNumber}}",
+							"host": [
+								"{{customer-transfer-service-url}}"
 							],
 							"path": [
 								"api",
-								"transfer-checkouts"
+								"transfer-orders"
 							],
 							"query": [
 								{
-									"key": "api-version",
-									"value": "non irure minim"
+									"key": "destinationStoreId",
+									"value": "{{destinationLocationId}}"
+								},
+								{
+									"key": "cmxdbTransferOrderNumber",
+									"value": "{{cmxdbTransferOrderNumber}}"
 								}
 							]
 						}
 					},
-					"status": "Internal Server Error",
-					"code": 500,
-					"_postman_previewlanguage": "text",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain"
-						}
-					],
-					"cookie": [],
-					"body": ""
-				}
-			]
-		},
-		{
-			"name": "Ensure Transfer Data Retrieved",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Ensure Transfer Data received\", () => {\r",
-							"    pm.expect(pm.response.code).to.equal(201);\r",
-							"    let response = pm.response.json();\r",
-							"    pm.expect(response.transferCheckoutId).to.equal(pm.environment.get(\"transferCheckoutId\"));\r",
-							"    pm.expect(response.customerInformation.firstName).to.equal(pm.environment.get(\"firstName\"));\r",
-							"    pm.expect(response.customerInformation.lastName).to.equal(pm.environment.get(\"lastName\"));\r",
-							"    pm.expect(response.identities[0].value).to.equal(pm.environment.get(\"ciamId\"));\r",
-							"    pm.expect(response.stockNumber).to.equal(pm.environment.get(\"stockNo\").toString());\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
+					"response": []
 				},
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "apikey",
-					"apikey": [
+					"name": "ESB - Tendered",
+					"event": [
 						{
-							"key": "value",
-							"value": "{{web-vehicle-api-key}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure ESB Tendered Post Request is Successful\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TransactionID\": \"{{$guid}}\",\r\n    \"Result\": [\r\n        {\r\n            \"loc_num_out\": {{destinationLocationId}},\r\n            \"order_num_out\": \"{{cmxdbTransferOrderNumber}}\"\r\n\r\n            // \"transfer_checkout_id\": null,\r\n            // \"sendinglocation\": \"{{vehicleLocation}}\",\r\n            // \"cust_id_out\": -21817751,\r\n            // \"cust_type\": \"A\",\r\n            // \"stock_num_out\": \"{{stockNumber}}\"\r\n            // \"record_type\": \"dolore id\",\r\n            // \"order_status\": \"Lorem quis incididunt mollit commodo\",\r\n            // \"first_name\": \"sit reprehende\",\r\n            // \"last_name\": \"sed quis enim veniam\",\r\n            // \"email\": \"ad reprehenderit fugiat\",\r\n            // \"phone_num\": \"in ex quis pariatur\",\r\n            // \"customer_contact_id_out\": 75270972,\r\n            // \"emp_id_out\": 85077578,\r\n            // \"create_date_out\": \"1961-02-08T00:17:15.011Z\",\r\n            // \"store_event_type_id\": -74491404,\r\n            // \"order_type_desc\": \"elit labore dolor proident\",\r\n            // \"order_type_id\": -31203138,\r\n            // \"estimated_arrival\": \"non officia\",\r\n            // \"transfer_fee\": 0,\r\n            // \"return_code\": -83845496,\r\n            // \"response_msg\": \"reprehenderit ea Lor\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "key",
-							"value": "apiKey",
-							"type": "string"
+						"url": {
+							"raw": "{{customer-transfer-service-url}}/esb-events/tendered",
+							"host": [
+								"{{customer-transfer-service-url}}"
+							],
+							"path": [
+								"esb-events",
+								"tendered"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{customer-transfer-service-url}}/api/transfer-checkouts/:id",
-					"host": [
-						"{{customer-transfer-service-url}}"
-					],
-					"path": [
-						"api",
-						"transfer-checkouts",
-						":id"
-					],
-					"query": [
-						{
-							"key": "api-version",
-							"value": "non irure minim",
-							"disabled": true
-						}
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "{{transferCheckoutId}}"
-						}
-					]
-				},
-				"description": "The response will include the transfer request id."
-			},
-			"response": [
 				{
-					"name": "The transfer request",
-					"originalRequest": {
+					"name": "Ensure TransferOrder Tendered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure TransferOrder Tendered\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.count).to.equal(1);\r",
+									"    let transferOrder = response.items[0];\r",
+									"    pm.expect(transferOrder.transferOrderId).to.equal(pm.environment.get(\"esbTransferOrderId\"));\r",
+									"    pm.expect(transferOrder.transferStatus).to.equal(\"transfer-order-tendered\");\r",
+									"    pm.expect(transferOrder.isActive).to.equal(true);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
+							"raw": "{{customer-transfer-service-url}}/api/transfer-orders?destinationStoreId={{destinationLocationId}}&cmxdbTransferOrderNumber={{cmxdbTransferOrderNumber}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{customer-transfer-service-url}}"
 							],
 							"path": [
 								"api",
-								"transfer-checkouts",
-								":id"
+								"transfer-orders"
 							],
 							"query": [
 								{
-									"key": "api-version",
-									"value": "non irure minim"
-								}
-							],
-							"variable": [
+									"key": "destinationStoreId",
+									"value": "{{destinationLocationId}}"
+								},
 								{
-									"key": "id"
+									"key": "cmxdbTransferOrderNumber",
+									"value": "{{cmxdbTransferOrderNumber}}"
 								}
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"cookie": [],
-					"body": "{\n \"id\": \"veniam eiusmod\",\n \"identities\": [\n  {\n   \"value\": \"ad\",\n   \"type\": \"qui ex deserunt dolore\"\n  },\n  {\n   \"value\": \"ad magna non ut\",\n   \"type\": \"Excepteur aliqua\"\n  }\n ],\n \"stockNumber\": \"in cu\",\n \"destinationLocationId\": \"dolore magna mollit fugiat\"\n}"
+					"response": []
 				},
 				{
-					"name": "No record was found for the provided id",
-					"originalRequest": {
+					"name": "ESB - Completed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure ESB Completed Post Request is Successful\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TransactionID\": \"{{$guid}}\",\r\n    \"Result\": [\r\n        {\r\n            \"cust_loc_num\": {{destinationLocationId}},\r\n            \"transfer_order_num\": {{cmxdbTransferOrderNumber}}\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{customer-transfer-service-url}}/esb-events/completed",
+							"host": [
+								"{{customer-transfer-service-url}}"
+							],
+							"path": [
+								"esb-events",
+								"completed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ensure TransferOrder Completed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ensure TransferOrder Completed\", () => {\r",
+									"    utils.checkStatus(pm, 200);\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.count).to.equal(1);\r",
+									"    let transferOrder = response.items[0];\r",
+									"    pm.expect(transferOrder.transferOrderId).to.equal(pm.environment.get(\"esbTransferOrderId\"));\r",
+									"    pm.expect(transferOrder.transferStatus).to.equal(\"transfer-order-completed\");\r",
+									"    pm.expect(transferOrder.isActive).to.equal(false);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
+							"raw": "{{customer-transfer-service-url}}/api/transfer-orders?destinationStoreId={{destinationLocationId}}&cmxdbTransferOrderNumber={{cmxdbTransferOrderNumber}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{customer-transfer-service-url}}"
 							],
 							"path": [
 								"api",
-								"transfer-checkouts",
-								":id"
+								"transfer-orders"
 							],
 							"query": [
 								{
-									"key": "api-version",
-									"value": "non irure minim"
-								}
-							],
-							"variable": [
+									"key": "destinationStoreId",
+									"value": "{{destinationLocationId}}"
+								},
 								{
-									"key": "id"
+									"key": "cmxdbTransferOrderNumber",
+									"value": "{{cmxdbTransferOrderNumber}}"
 								}
 							]
 						}
 					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"cookie": [],
-					"body": "{\n \"id\": \"veniam eiusmod\",\n \"identities\": [\n  {\n   \"value\": \"ad\",\n   \"type\": \"qui ex deserunt dolore\"\n  },\n  {\n   \"value\": \"ad magna non ut\",\n   \"type\": \"Excepteur aliqua\"\n  }\n ],\n \"stockNumber\": \"in cu\",\n \"destinationLocationId\": \"dolore magna mollit fugiat\"\n}"
-				},
-				{
-					"name": "An error occurred retrieving the request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/transfer-checkouts/:id?api-version=non irure minim",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"transfer-checkouts",
-								":id"
-							],
-							"query": [
-								{
-									"key": "api-version",
-									"value": "non irure minim"
-								}
-							],
-							"variable": [
-								{
-									"key": "id"
-								}
-							]
-						}
-					},
-					"status": "Internal Server Error",
-					"code": 500,
-					"_postman_previewlanguage": "text",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain"
-						}
-					],
-					"cookie": [],
-					"body": ""
+					"response": []
 				}
 			]
 		}
