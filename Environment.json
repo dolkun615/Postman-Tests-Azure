@@ -1,5 +1,5 @@
 {
-	"id": "83b8eed7-e741-430e-b63e-4e0cac8cf001",
+	"id": "da94310f-8922-4b34-b867-0f427d424a79",
 	"name": "QA",
 	"values": [
 		{
@@ -19,7 +19,7 @@
 		},
 		{
 			"key": "destinationLocationId",
-			"value": "7662",
+			"value": "7185",
 			"enabled": true
 		},
 		{
@@ -34,7 +34,7 @@
 		},
 		{
 			"key": "defaultTimeout",
-			"value": "7000",
+			"value": "5000",
 			"enabled": true
 		},
 		{
@@ -416,9 +416,39 @@
 			"key": "stockNo",
 			"value": "",
 			"enabled": true
+		},
+		{
+			"key": "transferOrderId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "randomStockNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "vehicleLocationId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "randomPhoneNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "cmxdbTransferOrderNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "esbTransferOrderId",
+			"value": "",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2021-08-05T12:15:12.934Z",
-	"_postman_exported_using": "Postman/8.9.1"
+	"_postman_exported_at": "2021-10-29T19:46:55.579Z",
+	"_postman_exported_using": "Postman/8.12.5"
 }

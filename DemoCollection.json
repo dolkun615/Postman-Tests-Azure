@@ -16,7 +16,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure ESB Created Event is Successful\", () => {\r",
-									"    utils.checkStatus(pm, 201);    \r",
+									"    pm.expect(pm.response.code).to.equal(201);   \r",
 									"    console.log(responseBody);\r",
 									"    pm.expect(responseBody).to.exist;\r",
 									"    pm.environment.set(\"esbTransferOrderId\", responseBody);\r",
@@ -89,7 +89,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure Transfer Data is Retrieved With esbTransferOrderId\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.cmxdbTransferOrderNumber).to.exist;\r",
 									"    pm.expect(response.destinationLocationId.toString());\r",
@@ -97,6 +97,7 @@
 									"    pm.expect(response.isActive).to.equal(true);\r",
 									"    pm.expect(response.denialDetails).to.equal(null);\r",
 									"    pm.expect(response.logisticDetails).to.equal(null);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
 								],
 								"type": "text/javascript"
@@ -128,7 +129,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure ESB Approved Event is Successful\", () => {\r",
-									"    utils.checkStatus(pm, 200);    \r",
+									"    pm.expect(pm.response.code).to.equal(200);    \r",
 									"    // Add tests\r",
 									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
@@ -179,13 +180,14 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure TransferOrder Approved\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.count).to.equal(1);\r",
 									"    let transferOrder = response.items[0];\r",
 									"    pm.expect(transferOrder.transferOrderId).to.equal(pm.environment.get(\"esbTransferOrderId\"));\r",
 									"    pm.expect(transferOrder.transferStatus).to.equal(\"transfer-order-approved\");\r",
 									"    pm.expect(transferOrder.isActive).to.equal(true);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
 								],
 								"type": "text/javascript"
@@ -226,7 +228,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure ESB Tendered Post Request is Successful\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
 								],
@@ -267,13 +269,14 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure TransferOrder Tendered\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.count).to.equal(1);\r",
 									"    let transferOrder = response.items[0];\r",
 									"    pm.expect(transferOrder.transferOrderId).to.equal(pm.environment.get(\"esbTransferOrderId\"));\r",
 									"    pm.expect(transferOrder.transferStatus).to.equal(\"transfer-order-tendered\");\r",
 									"    pm.expect(transferOrder.isActive).to.equal(true);\r",
+									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
 								],
 								"type": "text/javascript"
@@ -314,7 +317,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure ESB Completed Post Request is Successful\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
 									"})"
 								],
@@ -355,7 +358,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure TransferOrder Completed\", () => {\r",
-									"    utils.checkStatus(pm, 200);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.count).to.equal(1);\r",
 									"    let transferOrder = response.items[0];\r",
