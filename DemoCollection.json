@@ -17,7 +17,7 @@
 								"exec": [
 									"pm.test(\"Ensure ESB Created Event is Successful\", () => {\r",
 									"    pm.expect(pm.response.code).to.equal(201);   \r",
-									"    console.log(responseBody);\r",
+									"    //console.log(responseBody);\r",
 									"    pm.expect(responseBody).to.exist;\r",
 									"    pm.environment.set(\"esbTransferOrderId\", responseBody);\r",
 									"    setTimeout(() => {}, pm.environment.get(\"defaultTimeout\"));\r",
@@ -269,7 +269,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Ensure TransferOrder Tendered\", () => {\r",
-									"    pm.expect(pm.response.code).to.equal(2001);\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
 									"    let response = pm.response.json();\r",
 									"    pm.expect(response.count).to.equal(1);\r",
 									"    let transferOrder = response.items[0];\r",
